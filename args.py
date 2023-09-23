@@ -30,6 +30,8 @@ import os
 from dispatching_rules.heuristics import HEURISTICS
 from utils.utils import get_exp_name, get_path
 
+import torch
+
 parser = argparse.ArgumentParser(
     description="These args can be used with train.py, test.py and benchmark/run_taillard.py. They specify how the training"
     "(or testing) is going to be performed"
@@ -68,10 +70,13 @@ parser.add_argument(
     default=10,
     help="Number of CPU cores for simulating environment",
 )
+
+default_device = "cuda" if torch.cuda.is_available() else "cpu"
+
 parser.add_argument(
     "--device",
     type=str,
-    default="cuda",
+    default=default_device,
     choices=["cpu", "cuda", "cuda:0", "cuda:1", "cuda:2", "cuda:3"],
     help="Which device to use (cpu, cuda:0, cuda:1...)",
 )
