@@ -11,3 +11,6 @@ opencv-python
 kaleido
 pandas
 torchinfo
+tqdm
+dgl
+torch
